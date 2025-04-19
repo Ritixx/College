@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ritix Rank Predictor</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1em;
+    }
+    button {
+      background-color: #ffcc00;
+      color: black;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ffaa00;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ritix will predict your rank...</h1>
+
+  <input type="number" id="rank" placeholder="Enter your CRL Rank"><br>
+  <input type="text" id="state" placeholder="Enter your State"><br>
+  <select id="gender">
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select><br>
+  <button onclick="predictCollege()">Predict My NIT</button>
+
+  <div id="result"></div>
+
+  <script>
+    function predictCollege() {
+      const rank = document.getElementById('rank').value;
+      const state = document.getElementById('state').value;
+      const gender = document.getElementById('gender').value;
+      const resultDiv = document.getElementById('result');
+
+      if (!rank || !state || !gender) {
+        resultDiv.innerHTML = "Please fill all fields!";
+        return;
+      }
+
+      let college = "";
+
+      if (rank <= 1000) {
+        college = "NIT Trichy - Computer Science";
+      } else if (rank <= 2500) {
+        college = "NIT Warangal - Electrical Engineering";
+      } else if (rank <= 5000) {
+        college = "NIT Surathkal - Mechanical Engineering";
+      } else if (rank <= 10000) {
+        college = "MNIT Jaipur - Electronics & Communication";
+      } else if (rank <= 15000) {
+        college = "NIT Calicut - Civil Engineering";
+      } else {
+        college = "Good NIT like NIT Nagpur, NIT Kurukshetra - Branch depending on availability!";
+      }
+
+      resultDiv.innerHTML = `
+        <p>Congratulations ${gender} candidate from ${state}!</p>
+        <p>Oh Wow! You have got <strong>${college}</strong>!</p>
+        <p>Your future is bright! Shine on!</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
